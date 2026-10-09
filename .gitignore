@@ -1,0 +1,10 @@
+# build output
+dist/
+# Python / test caches
+__pycache__/
+*.pyc
+.pytest_cache/
+# companion runtime files (bridge exchange, local config)
+companion/*.json
+companion/*.xml
+.env

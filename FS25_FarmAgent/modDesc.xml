@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<modDesc descVersion="105">
+    <author>Farm Agent</author>
+    <version>0.4.0.0</version>
+    <title>
+        <en>Farm Agent (Milestone 3)</en>
+    </title>
+    <description>
+        <en><![CDATA[
+Experimental AI farm manager. Farm Agent is the brain, FS25's own AI workers are the hands.
+
+Alt+J menu: harvest all ready crops, prepare fields (plow / cultivate), plant a crop, replant,
+fertilize, lime, do all field work, autopilot on/off, pause, stop - or type a command.
+- Scans owned fields: crop, growth, ground type, fertilizer / lime / plow levels
+- Built-in brain decides what each field needs and which tractor + tool or combine does it
+- Starts vanilla AI field work; sends tractor + trailer under the pipe and to the silo
+- Verifies every job by measuring the field, recovers stalls, escalates to you when stuck
+- Autopilot: endless loop - every free machine gets the most useful job it can do now
+  (harvest, plow or cultivate, plant what is in season, fertilize, lime); fertilizing and
+  liming can be switched off; no plow free = cultivate instead
+- Machines are driven off the field after their job (back to where you parked them)
+- Farm memory: learns each combine's pipe position and each field's last crop
+
+Hotkeys (rebindable): Alt+J menu, Alt+K cycle panel, Alt+L pause/resume, Alt+End stop all agent work.
+Optional: run the companion script to have Claude interpret free-form commands.
+
+Singleplayer / host only.
+]]></en>
+    </description>
+    <iconFilename>icon_farmAgent.dds</iconFilename>
+    <multiplayer supported="false" />
+
+    <extraSourceFiles>
+        <sourceFile filename="scripts/FarmAgentLoader.lua" />
+    </extraSourceFiles>
+
+    <actions>
+        <action name="FA_COMMAND" category="ONFOOT VEHICLE" />
+        <action name="FA_TOGGLE_PANEL" category="ONFOOT VEHICLE" />
+        <action name="FA_PAUSE" category="ONFOOT VEHICLE" />
+        <action name="FA_STOP_ALL" category="ONFOOT VEHICLE" />
+    </actions>
+
+    <inputBinding>
+        <actionBinding action="FA_COMMAND">
+            <binding device="KB_MOUSE_DEFAULT" input="KEY_lalt KEY_j" />
+        </actionBinding>
+        <actionBinding action="FA_TOGGLE_PANEL">
+            <binding device="KB_MOUSE_DEFAULT" input="KEY_lalt KEY_k" />
+        </actionBinding>
+        <actionBinding action="FA_PAUSE">
+            <binding device="KB_MOUSE_DEFAULT" input="KEY_lalt KEY_l" />
+        </actionBinding>
+        <actionBinding action="FA_STOP_ALL">
+            <binding device="KB_MOUSE_DEFAULT" input="KEY_lalt KEY_end" />
+        </actionBinding>
+    </inputBinding>
+
+    <l10n>
+        <text name="input_FA_COMMAND"><en>Farm Agent: give command</en></text>
+        <text name="input_FA_TOGGLE_PANEL"><en>Farm Agent: cycle panel</en></text>
+        <text name="input_FA_PAUSE"><en>Farm Agent: pause / resume</en></text>
+        <text name="input_FA_STOP_ALL"><en>Farm Agent: stop all agent work</en></text>
+        <text name="fa_commandPrompt"><en>Farm Agent - what should the farm do?</en></text>
+    </l10n>
+</modDesc>
